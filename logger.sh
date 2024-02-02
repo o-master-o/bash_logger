@@ -7,7 +7,8 @@ LOG_FILE=""
 GREEN="\e[0;32"
 ORANGE="\e[0;33"
 RED="\e[0;31"
-BLUE="\e[1;34"
+BLUE="\e[0;34m"
+BOLD_BLUE="\e[1;34"
 NC="\e[0m"
 
 setup_logging() {
@@ -24,10 +25,15 @@ log_message() {
     local level="$1"
     local color="$2"
     local msg="$3"
+    local tag="$4"
     local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
 
     # Log to console with color
-    printf "${color}m${timestamp} [${level}]${NC} ${msg}\n"
+    if [[ "$tag" == "TAG" ]]; then
+        printf "${color}m${timestamp} [${level}]${NC} ${BLUE}${msg}${NC}\n"
+    else
+        printf "${color}m${timestamp} [${level}]${NC} ${msg}\n"
+    fi
 
 
     # Log to file without color
@@ -47,5 +53,5 @@ log_error() {
 }
 
 log_header() {
-    log_message "TAG" "$BLUE" "$1"
+    log_message "TAG" "$BOLD_BLUE" "$1" "TAG"
 }
