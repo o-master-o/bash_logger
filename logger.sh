@@ -29,10 +29,10 @@ log_message() {
     timestamp=$(date +"%Y-%m-%d %H:%M:%S")
 
     # Log to console with color
-    printf "\e[${color}m%s [%s]\e[0m %s\n" "${timestamp}" "${level}" "${msg}"
+    printf "\e[${color}m${timestamp} [${level}]\e[0m ${msg}\n"
 
     # Log to file without color
-    printf "%s [%s] %s\n" "${timestamp}" "${level}" "${msg}" >> "${LOG_FILE}"
+    printf "${timestamp} [${level}] ${msg}\n" >> "${LOG_FILE}"
 }
 
 # Wrapper functions for different log levels
