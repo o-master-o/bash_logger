@@ -29,12 +29,7 @@ log_message() {
     local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
 
     # Log to console with color
-    if [[ "$tag" == "TAG" ]]; then
-        printf "${color}m${timestamp} [${level}]${NC} ${BLUE}${msg}${NC}\n"
-    else
-        printf "${color}m${timestamp} [${level}]${NC} ${msg}\n"
-    fi
-
+    printf "${color}m${timestamp} [${level}]${NC} ${msg}\n"
 
     # Log to file without color
     printf "${timestamp} [${level}] ${msg}\n" >> "${LOG_FILE}"
@@ -53,5 +48,5 @@ log_error() {
 }
 
 log_header() {
-    log_message "TAG" "$BOLD_BLUE" "$1" "TAG"
+    log_message "TAG" "$BOLD_BLUE" "${BLUE}$1${NC}"
 }
