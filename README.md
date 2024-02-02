@@ -34,3 +34,7 @@ log_info "This is an info message."
 log_warn "This is a warning message."
 log_error "This is an error message."
 log_header "This is a header message."
+```
+
+Output:  
+![example_screen.png](example_screen.png)
